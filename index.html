@@ -3,237 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Login Page</title>
+  <title>Freenet Login Portal</title>
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #000428, #004e92);
       height: 100vh;
+      background: radial-gradient(circle at top, #00c6ff, #0072ff, #001f3f);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      color: white;
       overflow: hidden;
     }
 
-    /* Background glowing circles */
-    .bg-circle {
+    /* Floating glowing circles */
+    .bubble {
       position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
-      animation: float 8s ease-in-out infinite alternate;
+      animation: float 10s infinite ease-in-out;
+      filter: blur(2px);
     }
-    .circle1 {
-      width: 200px; height: 200px;
-      background: #00c6ff;
-      top: 20%; left: 10%;
-    }
-    .circle2 {
-      width: 250px; height: 250px;
-      background: #0072ff;
-      bottom: 10%; right: 15%;
-    }
+    .bubble:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+    .bubble:nth-child(2) { top: 70%; left: 70%; animation-delay: 3s; width: 180px; height: 180px; }
+    .bubble:nth-child(3) { top: 50%; left: 30%; animation-delay: 6s; }
+
     @keyframes float {
-      from { transform: translateY(0px); }
-      to { transform: translateY(30px); }
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-40px) scale(1.1); }
+      100% { transform: translateY(0) scale(1); }
     }
 
-    /* Info box (login details) */
-    .info-box {
+    .info {
       position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 255, 255, 0.15);
-      color: #fff;
-      border-radius: 10px;
-      padding: 12px 20px;
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      top: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #00ffcc;
       animation: fadeOut 10s forwards;
     }
 
     @keyframes fadeOut {
-      0% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
+      0%, 90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
     }
 
-    /* Login container */
-    .login-container {
-      position: relative;
+    .login-box {
       background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
       padding: 40px 35px;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(15px);
-      width: 360px;
       text-align: center;
-      color: #fff;
-      z-index: 2;
-      animation: fadeIn 1s ease-in-out;
+      width: 320px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+      z-index: 10;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .login-container h2 {
-      margin-bottom: 25px;
+    h2 {
       font-size: 26px;
       letter-spacing: 1px;
-      color: #fff;
-      text-shadow: 0 0 10px #00c6ff;
-    }
-
-    .input-box {
-      position: relative;
       margin-bottom: 20px;
+      color: #00e5ff;
+      text-shadow: 0 0 10px #00e5ff;
     }
 
-    .input-box input {
-      width: 100%;
+    input {
+      width: 90%;
       padding: 12px;
+      margin: 10px 0;
       border: none;
-      border-radius: 10px;
-      outline: none;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
+      border-radius: 6px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
       font-size: 16px;
+      outline: none;
       transition: 0.3s;
     }
 
-    .input-box input:focus {
-      background: rgba(255,255,255,0.25);
-      box-shadow: 0 0 10px #00c6ff;
+    input:focus {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px #00e5ff;
     }
 
-    .input-box input::placeholder {
-      color: #ddd;
-    }
-
-    .show-pass {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #00c6ff;
-      font-size: 14px;
-    }
-
-    .btn {
+    button {
       width: 100%;
       padding: 12px;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      margin-top: 15px;
       border: none;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 18px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #00e5ff, #00ff99);
+      color: #001f3f;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
 
-    .btn:hover {
+    button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #00c6ff;
+      box-shadow: 0 0 20px #00e5ff;
     }
 
-    .message, .error {
-      margin-top: 15px;
+    #message {
+      margin-top: 10px;
+      font-weight: bold;
       font-size: 15px;
-      display: none;
-    }
-
-    .message {
-      color: #00ff9d;
-      text-shadow: 0 0 5px #00ff9d;
-    }
-
-    .error {
-      color: #ff5c5c;
-      text-shadow: 0 0 5px #ff1e1e;
+      color: #ffcc00;
     }
 
     footer {
-      margin-top: 25px;
+      position: absolute;
+      bottom: 15px;
       font-size: 13px;
+      color: #00e5ff;
       opacity: 0.8;
-      color: #ccc;
-    }
-
-    footer b {
-      color: #00c6ff;
-      text-shadow: 0 0 5px #00c6ff;
     }
   </style>
 </head>
 <body>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
 
-  <!-- Background circles -->
-  <div class="bg-circle circle1"></div>
-  <div class="bg-circle circle2"></div>
+  <div class="info">🔑 Login: <b>12345</b> | Password: <b>Mahappen</b></div>
 
-  <!-- Info box (shows for 10s) -->
-  <div class="info-box" id="info">
-    🧠 <b>Username:</b> 12345 | <b>Password:</b> Mahappen  
+  <div class="login-box">
+    <h2>FREENET ACCESS 🔐</h2>
+    <input type="text" id="username" placeholder="Enter Login ID">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <p id="message"></p>
   </div>
 
-  <!-- Login Box -->
-  <div class="login-container">
-    <h2>🔐 Secure Login</h2>
-
-    <div class="input-box">
-      <input type="text" id="username" placeholder="Enter Username" required>
-    </div>
-
-    <div class="input-box">
-      <input type="password" id="password" placeholder="Enter Password" required>
-      <span class="show-pass" onclick="togglePass()">👁️</span>
-    </div>
-
-    <button class="btn" onclick="login()">Login</button>
-
-    <div id="success" class="message">✅ Login Successful! Redirecting...</div>
-    <div id="error" class="error">❌ Invalid username or password!</div>
-
-    <footer>💡 Don't forget to <b>Follow Us</b> ✨</footer>
-  </div>
+  <footer>💻 Powered by Legends of Freenet | Created by Mahappen</footer>
 
   <script>
-    // Hide the info box after 2 seconds
-    setTimeout(() => {
-      document.getElementById('info').style.display = 'none';
-    }, 10000);
-
-    function togglePass() {
-      const pass = document.getElementById("password");
-      pass.type = pass.type === "password" ? "text" : "password";
-    }
-
     function login() {
-      const user = document.getElementById("username").value.trim();
-      const pass = document.getElementById("password").value.trim();
-      const success = document.getElementById("success");
-      const error = document.getElementById("error");
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const msg = document.getElementById("message");
 
-      const correctUser = "12345";
-      const correctPass = "Mahappen";
-
-      if (user === correctUser && pass === correctPass) {
-        success.style.display = "block";
-        error.style.display = "none";
-
+      if (user === "12345" && pass === "Mahappen") {
+        msg.textContent = "✅ Login Successful! Redirecting...";
+        msg.style.color = "lime";
         setTimeout(() => {
-          window.location.href = "home.html"; // change to your main page
+          window.location.href = "home.html";
         }, 2000);
       } else {
-        error.style.display = "block";
-        success.style.display = "none";
+        msg.textContent = "❌ Incorrect login or password!";
+        msg.style.color = "red";
       }
     }
   </script>
