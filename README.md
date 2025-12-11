@@ -7,10 +7,10 @@
 
 *what we proviede
 **To-Do List**
-- [✓] HTTP CUSTOM FILES
-- [ ] HTTP INJECTOR FILES
+- [x] HTTP CUSTOM FILES
+- [x] HTTP INJECTOR FILES
 - [x] HA TUNNEL PLUS
-- [ ] & MORE
+- [x] & MORE
 
 
 
