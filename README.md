@@ -17,7 +17,7 @@ BNK is a squad/GANG where we work together to hunt hosts, build VPN files & cetr
 *## **How to Use Host Tester**
 Host tester is where you test if a host is working or not (e.g., `www.bnksquad.co.za`); it tells you if it's **working** or **dead**.
 
-### **Steps:**
+###**Steps:**
 1. Go to **Host Tester** page
 2. Enter host URL (e.g., `www.bnksquad.co.za`)
 3. Click **Test**
@@ -26,12 +26,6 @@ Host tester is where you test if a host is working or not (e.g., `www.bnksquad.c
 <span style="font-family: Arial; font-size: 18px; color: #00698f;">**Host Tester** is awesome!</span>
 
 Github repo: https://abutiieyymahappen.github.io/Black_net_kings.github.io/ 
+
 Facebook: https://www.facebook.com/profile.php?id=100070641910323 
 Developer: **Abutieyy Mahappen BNK** 🌟🎭
-
-github repo https://abutiieyymahappen.github.io/Black_net_kings.github.io/
-
-Facebook acc 
-https://www.facebook.com/profile.php?id=100070641910323
-
-developer Abutieyy Mahappen BNK🌟🎭
