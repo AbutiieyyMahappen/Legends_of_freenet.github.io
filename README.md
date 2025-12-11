@@ -14,13 +14,10 @@ BNK is a squad/GANG where we work together to hunt hosts, build VPN files & cetr
   - [x] HA TUNNEL PLUS
   - [x] & MORE
 
+WEBSITE VERSION 1.2
 
 github repo *https://abutiieyymahappen.github.io/Black_net_kings.github.io/
 
 
 *Facebook acc 
 https://www.facebook.com/profile.php?id=100070641910323
-
-
-language used JAVASCRIPT 00.4%
-html 99.6%
